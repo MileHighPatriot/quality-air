@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "pages": "next build && rm -rf docs && mv out docs && touch docs/.nojekyll"
+    "pages": "next build && rm -rf docs && mv out docs && touch docs/.nojekyll",
+    "pages:github": "GITHUB_PAGES=true next build && rm -rf docs && mv out docs && rm -f docs/CNAME && touch docs/.nojekyll"
   },
   "dependencies": {
     "next": "16.3.8",

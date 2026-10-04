@@ -13,4 +13,8 @@ npm run build    # static export into out/
 npx serve out -l 3000
 ```
 
-`npm run pages` builds into `docs/` for GitHub Pages (CNAME `qualityair.5280webs.com`). Not published yet.
+Live at https://milehighpatriot.github.io/quality-air/ (GitHub Pages serves `docs/` on main).
+
+- `npm run pages:github` builds `docs/` for that github.io address. Use this one for now.
+- `npm run pages` builds `docs/` for the custom domain `qualityair.5280webs.com`. Only switch to it once
+  the DNS record exists (CNAME `qualityair` to `milehighpatriot.github.io`), or the live site breaks.
