@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { nav } from "@/data/nav";
 
 export default function NotFound() {
   return (
@@ -6,17 +7,13 @@ export default function NotFound() {
       <div className="wrap max-w-2xl">
         <p className="eyebrow">404</p>
         <h1 className="t-hero mt-4">Nothing at this address.</h1>
-        <p className="t-lede mt-5">The page you were after isn&apos;t here. The three that are:</p>
+        <p className="t-lede mt-5">The page you were after isn&apos;t here. These are:</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Link href="/" className="btn btn-pine">
-            Home
-          </Link>
-          <Link href="/repair-or-replace/" className="btn btn-line">
-            Repair or replace?
-          </Link>
-          <Link href="/maintenance-plan/" className="btn btn-line">
-            Maintenance plan
-          </Link>
+          {nav.map((item, i) => (
+            <Link key={item.href} href={item.href} className={`btn ${i === 0 ? "btn-pine" : "btn-line"}`}>
+              {item.label}
+            </Link>
+          ))}
         </div>
       </div>
     </section>

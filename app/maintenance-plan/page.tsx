@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import DemoForm from "@/components/DemoForm";
 import Icon from "@/components/Icon";
+import PlanCalculator from "@/components/PlanCalculator";
 import { planFaq, planReasons, plans, tuneUpSteps } from "@/data/plans";
 
 export const metadata: Metadata = {
@@ -51,6 +52,15 @@ export default function MaintenancePlanPage() {
         <p className="wrap mt-4 text-base text-slate">
           Sample prices for a concept site. Real prices depend on the system and the home.
         </p>
+      </section>
+
+      {/* Savings calculator */}
+      <section id="savings" className="section pt-0 md:pt-0">
+        <div className="wrap">
+          <h2 className="t-h2">Does a plan pay for itself?</h2>
+          <p className="t-lede mt-3 mb-7 max-w-2xl">Tell it about your year. It does the math both ways.</p>
+          <PlanCalculator />
+        </div>
       </section>
 
       {/* 3. What happens at a tune-up */}

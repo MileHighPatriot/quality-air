@@ -1,7 +1,9 @@
 import Link from "next/link";
+import ComfortCard from "@/components/ComfortCard";
 import DemoForm from "@/components/DemoForm";
 import Icon from "@/components/Icon";
-import Ridge from "@/components/Ridge";
+import OfficeStatus from "@/components/OfficeStatus";
+import Photo from "@/components/Photo";
 import { reviews, services, toolQuestions, trustPoints } from "@/data/home";
 import { plans } from "@/data/plans";
 import { site } from "@/data/site";
@@ -16,8 +18,8 @@ export default function HomePage() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="overflow-hidden bg-card">
-        <div className="wrap grid items-center gap-10 pt-12 pb-10 md:pt-20 md:pb-14 lg:grid-cols-[2fr_1fr]">
+      <section className="relative overflow-hidden bg-card">
+        <div className="wrap grid items-center gap-10 pt-10 pb-12 md:pt-16 lg:grid-cols-[1.3fr_1fr] lg:gap-12 lg:pt-20 lg:pb-20">
           <div>
             <p className="eyebrow">Heating and cooling in {site.homeCity}</p>
             <h1 className="t-hero mt-4">
@@ -32,26 +34,40 @@ export default function HomePage() {
                 <Icon name="phone" className="h-4 w-4" /> Call {site.phone}
               </a>
             </div>
+            <a
+              href={site.phoneHref}
+              className="mt-6 flex w-fit flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-ember/30 bg-ember-soft px-4 py-3 text-ink hover:border-ember"
+            >
+              <Icon name="flame" className="h-5 w-5 text-ember-deep" />
+              <span className="font-bold">{site.emergency}</span>
+              <OfficeStatus className="text-ember-deep" />
+            </a>
           </div>
 
-          <div className="hidden lg:block" aria-hidden="true">
-            <ComfortDial />
+          <div className="relative pb-0 lg:pb-10">
+            <div className="hero-photo overflow-hidden rounded-[2rem] bg-sand">
+              <Photo
+                name="snowyHouse"
+                sizes="(min-width: 1024px) 34rem, 100vw"
+                className="aspect-[16/11] h-full w-full object-cover lg:aspect-[5/5.4]"
+              />
+            </div>
+            <ComfortCard className="relative mx-3 -mt-16 sm:mx-auto sm:max-w-sm lg:absolute lg:bottom-0 lg:-left-12 lg:mx-0 lg:mt-0 lg:w-[22rem]" />
           </div>
         </div>
-        <Ridge className="h-14 text-pine md:h-24" fill="#faf8f4" />
       </section>
 
       {/* 2. Trust points */}
-      <section className="pt-10 pb-4 md:pt-14">
-        <ul className="wrap grid gap-6 md:grid-cols-3 md:gap-8">
+      <section className="on-dark bg-pine text-white">
+        <ul className="wrap grid gap-8 py-10 md:grid-cols-3 md:py-12">
           {trustPoints.map((t) => (
             <li key={t.title} className="flex gap-4">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-pine-soft text-pine">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#ffb38a]">
                 <Icon name={t.icon} className="h-6 w-6" />
               </span>
               <div>
-                <h2 className="t-h3">{t.title}</h2>
-                <p className="mt-1 text-slate">{t.body}</p>
+                <h2 className="t-h3 !text-white">{t.title}</h2>
+                <p className="mt-1 text-white/80">{t.body}</p>
               </div>
             </li>
           ))}
@@ -60,20 +76,41 @@ export default function HomePage() {
 
       {/* 3. Services */}
       <section id="services" className="section">
-        <div className="wrap">
-          <p className="eyebrow">What we do</p>
-          <h2 className="t-h2 mt-3">Four things, done well.</h2>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {services.map((s) => (
-              <li key={s.title} className="card">
-                <span className={`flex h-12 w-12 items-center justify-center rounded-xl ${toneClass[s.tone]}`}>
-                  <Icon name={s.icon} className="h-6 w-6" />
-                </span>
-                <h3 className="t-h3 mt-4">{s.title}</h3>
-                <p className="mt-2 text-slate">{s.body}</p>
-              </li>
-            ))}
-          </ul>
+        <div className="wrap grid gap-10 lg:grid-cols-[1fr_20rem] lg:gap-12">
+          <div>
+            <p className="eyebrow">What we do</p>
+            <h2 className="t-h2 mt-3">Four things, done well.</h2>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              {services.map((s) => (
+                <li key={s.title} className="card">
+                  <span className={`flex h-12 w-12 items-center justify-center rounded-xl ${toneClass[s.tone]}`}>
+                    <Icon name={s.icon} className="h-6 w-6" />
+                  </span>
+                  <h3 className="t-h3 mt-4">{s.title}</h3>
+                  <p className="mt-2 text-slate">{s.body}</p>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link href="/pricing/" className="btn btn-pine">
+                See the prices <Icon name="arrow" className="h-4 w-4" />
+              </Link>
+              <Link href="/no-heat/" className="btn btn-line">
+                No heat right now? Check these first
+              </Link>
+            </div>
+          </div>
+          <figure className="relative hidden lg:block">
+            <Photo
+              name="heatPump"
+              sizes="20rem"
+              className="h-full max-h-[40rem] w-full rounded-[2rem] object-cover object-[22%_55%]"
+            />
+            <figcaption className="absolute inset-x-4 bottom-4 rounded-2xl bg-card/95 p-4 text-base shadow-lg shadow-ink/10">
+              <strong className="block font-display text-pine">Heat pumps, too.</strong>
+              Sized for Colorado winters, with backup heat for the coldest nights.
+            </figcaption>
+          </figure>
         </div>
       </section>
 
@@ -166,30 +203,21 @@ export default function HomePage() {
             <a href={site.phoneHref} className="btn btn-line mt-6">
               <Icon name="phone" className="h-4 w-4" /> Call {site.phone}
             </a>
+            <figure className="relative mt-8">
+              <Photo
+                name="techPanel"
+                sizes="(min-width: 1024px) 26rem, (min-width: 768px) 40vw, 100vw"
+                className="aspect-[4/4.4] w-full rounded-[2rem] object-cover object-[60%_45%] md:aspect-[4/4.2]"
+              />
+              <figcaption className="absolute inset-x-4 bottom-4 rounded-2xl bg-card/95 p-4 text-base shadow-lg shadow-ink/10">
+                <strong className="block font-display text-pine">Paid hourly, not on commission.</strong>
+                The tech fixes what&apos;s broken. Nobody earns more by selling you a bigger repair.
+              </figcaption>
+            </figure>
           </div>
           <DemoForm variant="contact" />
         </div>
       </section>
     </>
-  );
-}
-
-/** Decorative thermostat: ember on the heat side, sky on the cool side. */
-function ComfortDial() {
-  return (
-    <svg viewBox="0 0 240 240" className="mx-auto w-full max-w-[18rem]">
-      <circle cx="120" cy="120" r="112" fill="#faf8f4" stroke="#e3ddd0" strokeWidth="2" />
-      <path d="M120 28a92 92 0 0 0 0 184" fill="none" stroke="#e06a2b" strokeWidth="14" strokeLinecap="round" />
-      <path d="M120 28a92 92 0 0 1 0 184" fill="none" stroke="#3a8dde" strokeWidth="14" strokeLinecap="round" />
-      <text x="120" y="138" textAnchor="middle" fontSize="64" fontWeight="800" fill="#1f4d3a" letterSpacing="-2">
-        70°
-      </text>
-      <text x="76" y="170" textAnchor="middle" fontSize="15" fontWeight="700" fill="#9c4212">
-        HEAT
-      </text>
-      <text x="164" y="170" textAnchor="middle" fontSize="15" fontWeight="700" fill="#1f66b0">
-        COOL
-      </text>
-    </svg>
   );
 }

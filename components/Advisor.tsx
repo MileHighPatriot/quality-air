@@ -16,6 +16,7 @@ import {
 } from "@/data/advisor";
 import { plans } from "@/data/plans";
 import { site } from "@/data/site";
+import { prefillBooking } from "@/components/DemoForm";
 
 const systemIcon: Record<SystemId, IconName> = { furnace: "flame", ac: "snow", "heat-pump": "swap" };
 const systemTone: Record<SystemId, string> = {
@@ -153,11 +154,15 @@ export default function Advisor() {
           {result.verdict}
         </h2>
         <p className="mt-5 text-lg text-white/90">
-          No price and no questions on this one. Get everyone outside first.
+          No price and no questions on this one. Get everyone outside first. We can help once the utility says it&apos;s
+          safe: {site.phone}.
         </p>
         <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <a href={site.phoneHref} className="btn btn-white">
-            <Icon name="phone" className="h-4 w-4" /> Call {site.phone}
+          <a href="tel:911" className="btn btn-white">
+            <Icon name="phone" className="h-4 w-4" /> Call 911
+          </a>
+          <a href={site.xcelGasEmergencyHref} className="btn btn-white">
+            <Icon name="phone" className="h-4 w-4" /> Xcel gas emergency {site.xcelGasEmergency}
           </a>
           <button type="button" className="btn border-white text-white hover:bg-white/10" onClick={() => go(2)}>
             <Icon name="back" className="h-4 w-4" /> Back
@@ -235,8 +240,12 @@ export default function Advisor() {
         <a href={site.phoneHref} className="btn btn-pine">
           <Icon name="phone" className="h-4 w-4" /> Call {site.phone}
         </a>
-        <a href="#book" className="btn btn-line">
-          Book a visit
+        <a
+          href="#book"
+          className="btn btn-line"
+          onClick={() => prefillBooking(`${systemLabel}, ${ageLabel}: ${symptomLabel}. The repair-or-replace tool said: ${result.label}.`)}
+        >
+          Book this visit <Icon name="arrow" className="h-4 w-4" />
         </a>
       </div>
 

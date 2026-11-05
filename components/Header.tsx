@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
+import OfficeStatus from "@/components/OfficeStatus";
 import { nav } from "@/data/nav";
 import { site } from "@/data/site";
 
@@ -24,20 +25,20 @@ export default function Header() {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href.replace(/\/$/, "")));
 
   return (
-    <header className="relative z-40 border-b border-line bg-card">
+    <header className="sticky top-0 z-40 border-b border-line bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/85">
       <div className="wrap flex h-[4.5rem] items-center justify-between gap-3">
-        <Link href="/" className="flex min-h-11 shrink-0 items-center" aria-label={`${site.name} home`} onClick={() => setOpen(false)}>
+        <Link href="/" className="flex min-h-11 shrink-0 items-center" aria-label={`${site.name} ${site.descriptor}, home`} onClick={() => setOpen(false)}>
           <Logo />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-1">
-            {nav.map((item) => (
+            {nav.slice(1).map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className="flex min-h-11 items-center rounded-lg px-3.5 font-bold text-ink/80 transition-colors hover:bg-pine-soft hover:text-pine aria-[current=page]:bg-pine-soft aria-[current=page]:text-pine"
+                  className="flex min-h-11 items-center rounded-lg px-3 whitespace-nowrap font-bold text-ink/80 transition-colors hover:bg-pine-soft hover:text-pine aria-[current=page]:bg-pine-soft aria-[current=page]:text-pine"
                 >
                   {item.label}
                 </Link>
@@ -47,10 +48,13 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href={site.phoneHref} className="btn btn-pine px-3.5 sm:px-5" aria-label={`Call ${site.phone}`}>
+          <a href={site.phoneHref} className="btn btn-pine px-3.5 whitespace-nowrap sm:px-5">
             <Icon name="phone" className="h-4 w-4" />
-            <span>
-              Call<span className="hidden sm:inline"> {site.phone}</span>
+            <span className="flex flex-col items-start leading-tight">
+              <span>
+                Call<span className="sr-only sm:not-sr-only"> {site.phone}</span>
+              </span>
+              <OfficeStatus className="hidden !text-xs font-semibold whitespace-nowrap text-white/85 xl:flex" />
             </span>
           </a>
           <button

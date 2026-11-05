@@ -6,7 +6,15 @@ export type Plan = {
   blurb: string;
   features: string[];
   featured?: boolean;
+  /** For the savings calculator. Sample numbers, like the prices. */
+  monthly: number;
+  repairDiscount: number;
+  /** Which after-hours fees the plan waives. */
+  noOvertime: "weekdays" | "all";
 };
+
+/** Sample add-on for a second furnace + AC pair, per month. */
+export const secondSystemMonthly = 8;
 
 export const plans: Plan[] = [
   {
@@ -20,6 +28,9 @@ export const plans: Plan[] = [
       "10% off repairs",
       "No overtime charge on weekdays",
     ],
+    monthly: 15,
+    repairDiscount: 0.1,
+    noOvertime: "weekdays",
   },
   {
     id: "total",
@@ -34,6 +45,9 @@ export const plans: Plan[] = [
       "A free second-opinion quote on any replacement",
     ],
     featured: true,
+    monthly: 25,
+    repairDiscount: 0.15,
+    noOvertime: "all",
   },
 ];
 

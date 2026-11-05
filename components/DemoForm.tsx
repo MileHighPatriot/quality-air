@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useEffect, useId, useState, type FormEvent } from "react";
 import Icon from "@/components/Icon";
 import { concerns } from "@/data/home";
 import { plans } from "@/data/plans";
@@ -14,6 +14,13 @@ const submitLabel: Record<Variant, string> = {
   plan: "Sign me up",
 };
 
+const PREFILL = "qa:prefill-booking";
+
+/** Fill the "visit" form's message box (used by the repair-or-replace result). */
+export function prefillBooking(message: string) {
+  window.dispatchEvent(new CustomEvent(PREFILL, { detail: message }));
+}
+
 /**
  * Front-end only. Submitting never sends anything anywhere: it swaps the form
  * for a thank-you note that says so.
@@ -21,6 +28,17 @@ const submitLabel: Record<Variant, string> = {
 export default function DemoForm({ variant }: { variant: Variant }) {
   const id = useId();
   const [sent, setSent] = useState(false);
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (variant !== "visit") return;
+    const onPrefill = (e: Event) => {
+      setSent(false);
+      setMessage((e as CustomEvent<string>).detail);
+    };
+    window.addEventListener(PREFILL, onPrefill);
+    return () => window.removeEventListener(PREFILL, onPrefill);
+  }, [variant]);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,7 +60,7 @@ export default function DemoForm({ variant }: { variant: Variant }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="card grid gap-5">
+    <form onSubmit={onSubmit} className="card grid content-start gap-5 self-start">
       <p className="w-fit rounded-full bg-sand px-3 py-1 text-sm font-bold text-slate">Demo form</p>
 
       <div className="grid gap-5 sm:grid-cols-2">
@@ -99,7 +117,14 @@ export default function DemoForm({ variant }: { variant: Variant }) {
           <label htmlFor={`${id}-message`} className="field-label">
             {variant === "visit" ? "Anything we should know?" : "Message"}
           </label>
-          <textarea id={`${id}-message`} name="message" rows={variant === "visit" ? 3 : 4} className="field" />
+          <textarea
+            id={`${id}-message`}
+            name="message"
+            rows={variant === "visit" ? 3 : 4}
+            className="field"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
         </div>
       )}
 

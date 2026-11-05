@@ -128,6 +128,9 @@ export const ranges = {
   newFurnace: { label: "New furnace installed", range: "$4,500–$8,500" },
   newAc: { label: "New central AC installed", range: "$5,500–$10,000" },
   newHeatPump: { label: "New heat pump installed", range: "$8,000–$15,000" },
+  afterHours: { label: "After-hours or weekend visit (added to the diagnostic)", range: "$75–$150" },
+  thermostat: { label: "Smart thermostat installed", range: "$250–$450" },
+  ductClean: { label: "Duct cleaning, whole house", range: "$350–$600" },
 } satisfies Record<string, PriceRange>;
 
 const repairRange: Record<SystemId, PriceRange> = {
@@ -146,7 +149,7 @@ export const verdicts: Record<VerdictKind, { label: string; verdict: string }> =
   safety: {
     label: "Safety first",
     verdict:
-      "Leave the house, don't flip switches, and call Xcel Energy's gas emergency line from outside. Then call us.",
+      "Leave the house now and move away. Don't flip switches or use anything that could spark. From outside, call 911 and Xcel Energy's gas emergency line. Once it's safe, call us.",
   },
   "tune-up": {
     label: "Tune-up",
