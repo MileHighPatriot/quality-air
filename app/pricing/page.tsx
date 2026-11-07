@@ -4,12 +4,14 @@ import Icon from "@/components/Icon";
 import { ranges, rangesNote, sample, type PriceRange } from "@/data/advisor";
 import { plans } from "@/data/plans";
 import { site } from "@/data/site";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Prices",
   description:
     "Sample price ranges for furnace and AC repair, tune-ups, and new systems in Aurora. The same ranges the repair-or-replace tool uses.",
-};
+  path: "/pricing/",
+});
 
 const groups: { title: string; icon: "wrench" | "flame" | "home"; note: string; items: PriceRange[] }[] = [
   {

@@ -3,12 +3,14 @@ import DemoForm from "@/components/DemoForm";
 import Icon from "@/components/Icon";
 import PlanCalculator from "@/components/PlanCalculator";
 import { planFaq, planReasons, plans, tuneUpSteps } from "@/data/plans";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Maintenance plan",
   description:
     "Two tune-ups a year: a furnace check in the fall, an AC check in the spring, and priority when something breaks.",
-};
+  path: "/maintenance-plan/",
+});
 
 export default function MaintenancePlanPage() {
   return (

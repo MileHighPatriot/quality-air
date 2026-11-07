@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Advisor from "@/components/Advisor";
 import DemoForm from "@/components/DemoForm";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "Repair or replace?",
   description:
     "Answer 3 questions about your furnace, AC, or heat pump. You'll get a straight answer and a sample price range.",
-};
+  path: "/repair-or-replace/",
+});
 
 export default function RepairOrReplacePage() {
   return (

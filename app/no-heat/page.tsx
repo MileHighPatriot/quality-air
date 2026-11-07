@@ -5,12 +5,14 @@ import OfficeStatus from "@/components/OfficeStatus";
 import Photo from "@/components/Photo";
 import { site } from "@/data/site";
 import { noCool, noHeat, stopAndCall } from "@/data/troubleshoot";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: "No heat or no cool? Check these first",
   description:
     "Six quick checks before you call for furnace or AC repair, from the thermostat to snow on the vent pipes. Plus what to do if you smell gas.",
-};
+  path: "/no-heat/",
+});
 
 export default function NoHeatPage() {
   return (

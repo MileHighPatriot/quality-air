@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import ComfortCard from "@/components/ComfortCard";
 import DemoForm from "@/components/DemoForm";
@@ -7,6 +8,9 @@ import Photo from "@/components/Photo";
 import { reviews, services, toolQuestions, trustPoints } from "@/data/home";
 import { plans } from "@/data/plans";
 import { site } from "@/data/site";
+import { pageMeta } from "@/lib/meta";
+
+export const metadata: Metadata = pageMeta({ path: "/" });
 
 const toneClass = {
   ember: "bg-ember-soft text-ember-deep",
