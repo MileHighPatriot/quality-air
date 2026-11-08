@@ -7,10 +7,25 @@ import OfficeStatus from "@/components/OfficeStatus";
 import Photo from "@/components/Photo";
 import { reviews, services, toolQuestions, trustPoints } from "@/data/home";
 import { plans } from "@/data/plans";
-import { site } from "@/data/site";
+import { liveUrl, site } from "@/data/site";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata: Metadata = pageMeta({ path: "/" });
+
+/** Structured data for the fictional business, so the concept shows what a real client's site would include. */
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  name: `${site.name} (concept project)`,
+  description: `Concept project. ${site.name} is a fictional Aurora furnace and AC company built as a portfolio piece. It is not a real company.`,
+  url: `${liveUrl}/`,
+  telephone: site.phoneHref.replace(/^tel:\+1(\d{3})(\d{3})(\d{4})$/, "+1-$1-$2-$3"),
+  email: site.email,
+  image: `${liveUrl}/og.jpg`,
+  areaServed: { "@type": "Place", name: "Aurora and the east Denver metro, Colorado (example area)" },
+  slogan: "Concept project",
+  disambiguatingDescription: "Fictional business for a concept website. No real address, license, or reviews.",
+};
 
 const toneClass = {
   ember: "bg-ember-soft text-ember-deep",
@@ -21,6 +36,7 @@ const toneClass = {
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* 1. Hero */}
       <section className="relative overflow-hidden bg-card">
         <div className="wrap grid items-center gap-10 pt-10 pb-12 md:pt-16 lg:grid-cols-[1.3fr_1fr] lg:gap-12 lg:pt-20 lg:pb-20">

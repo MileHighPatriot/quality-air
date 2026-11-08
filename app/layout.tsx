@@ -47,26 +47,10 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-/** Structured data for the fictional business, so the concept shows what a real client's site would include. */
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "HVACBusiness",
-  name: `${site.name} (concept project)`,
-  description: `Concept project. ${site.name} is a fictional Aurora furnace and AC company built as a portfolio piece. It is not a real company.`,
-  url: `${liveUrl}/`,
-  telephone: site.phoneHref.replace(/^tel:\+1(\d{3})(\d{3})(\d{4})$/, "+1-$1-$2-$3"),
-  email: site.email,
-  image: `${liveUrl}/og.jpg`,
-  areaServed: { "@type": "Place", name: "Aurora and the east Denver metro, Colorado (example area)" },
-  slogan: "Concept project",
-  disambiguatingDescription: "Fictional business for a concept website. No real address, license, or reviews.",
-};
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${display.variable} h-full antialiased`}>
       <body className="min-h-full bg-paper font-sans text-ink">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <a href="#main" className="skip-link">
           Skip to content
         </a>

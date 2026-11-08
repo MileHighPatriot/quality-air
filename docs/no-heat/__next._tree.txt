@@ -2,4 +2,4 @@
 :HL["/quality-air/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/quality-air/_next/static/media/f25354f9e0fe5fea-s.p.3941-h4aze69t.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/quality-air/photos/front-steps-800.webp","image",{"imageSrcSet":"/quality-air/photos/front-steps-480.webp 480w, /quality-air/photos/front-steps-800.webp 800w, /quality-air/photos/front-steps-1024.webp 1024w","imageSizes":"(min-width: 1024px) 30rem, 100vw"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"no-heat","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"BqS_RLQol8gVU2B_dobg_"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"no-heat","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"btZTjQ81x-tvVQtdWY6Nv"}
