@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Airflow from "@/components/Airflow";
 import ComfortCard from "@/components/ComfortCard";
 import DemoForm from "@/components/DemoForm";
 import Icon from "@/components/Icon";
 import OfficeStatus from "@/components/OfficeStatus";
 import Photo from "@/components/Photo";
+import YearCurve from "@/components/YearCurve";
 import { reviews, services, toolQuestions, trustPoints } from "@/data/home";
 import { plans } from "@/data/plans";
 import { liveUrl, site } from "@/data/site";
@@ -38,12 +40,22 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* 1. Hero */}
-      <section className="relative overflow-hidden bg-card">
-        <div className="wrap grid items-center gap-10 pt-10 pb-12 md:pt-16 lg:grid-cols-[1.3fr_1fr] lg:gap-12 lg:pt-20 lg:pb-20">
-          <div>
+      <section className="hero-wash relative isolate overflow-hidden bg-card">
+        <Airflow className="-z-10" />
+        <div className="wrap grid grid-cols-1 items-center gap-10 pt-10 pb-12 md:pt-16 lg:grid-cols-[1.3fr_1fr] lg:gap-12 lg:pt-20 lg:pb-20">
+          <div className="min-w-0">
             <p className="eyebrow">Heating and cooling in {site.homeCity}</p>
             <h1 className="t-hero mt-4">
-              Heat that shows up. <span className="block">Cool that keeps up.</span>
+              <span className="line-mask">
+                <span className="line-rise">
+                  <span className="text-ember-deep">Heat</span> that shows up.
+                </span>
+              </span>{" "}
+              <span className="line-mask">
+                <span className="line-rise" style={{ "--d": "120ms" } as React.CSSProperties}>
+                  <span className="text-sky-deep">Cool</span> that keeps up.
+                </span>
+              </span>
             </h1>
             <p className="t-lede mt-5 max-w-xl">{site.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -65,14 +77,14 @@ export default function HomePage() {
           </div>
 
           <div className="relative pb-0 lg:pb-10">
-            <div className="hero-photo overflow-hidden rounded-[2rem] bg-sand">
+            <div className="hero-photo photo-in overflow-hidden rounded-[2rem] bg-sand shadow-[0_40px_80px_-40px_rgb(16_32_26/0.45)]">
               <Photo
                 name="snowyHouse"
                 sizes="(min-width: 1024px) 34rem, 100vw"
                 className="aspect-[16/11] h-full w-full object-cover lg:aspect-[5/5.4]"
               />
             </div>
-            <ComfortCard className="relative mx-3 -mt-16 sm:mx-auto sm:max-w-sm lg:absolute lg:bottom-0 lg:-left-12 lg:mx-0 lg:mt-0 lg:w-[22rem]" />
+            <ComfortCard className="card-in relative mx-3 -mt-16 sm:mx-auto sm:max-w-sm lg:absolute lg:bottom-0 lg:-left-12 lg:mx-0 lg:mt-0 lg:w-[22rem]" />
           </div>
         </div>
       </section>
@@ -81,7 +93,7 @@ export default function HomePage() {
       <section className="on-dark bg-pine text-white">
         <ul className="wrap grid gap-8 py-10 md:grid-cols-3 md:py-12">
           {trustPoints.map((t) => (
-            <li key={t.title} className="flex gap-4">
+            <li key={t.title} className="reveal flex gap-4">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/10 text-[#ffb38a]">
                 <Icon name={t.icon} className="h-6 w-6" />
               </span>
@@ -102,7 +114,7 @@ export default function HomePage() {
             <h2 className="t-h2 mt-3">Four things, done well.</h2>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               {services.map((s) => (
-                <li key={s.title} className="card">
+                <li key={s.title} className="card reveal lift">
                   <span className={`flex h-12 w-12 items-center justify-center rounded-xl ${toneClass[s.tone]}`}>
                     <Icon name={s.icon} className="h-6 w-6" />
                   </span>
@@ -150,7 +162,7 @@ export default function HomePage() {
           </div>
           <ol className="grid gap-3">
             {toolQuestions.map((q, i) => (
-              <li key={q} className="card flex items-center gap-4 py-4">
+              <li key={q} className="card reveal-side flex items-center gap-4 py-4" style={{ "--i": i } as React.CSSProperties}>
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pine font-extrabold text-white">
                   {i + 1}
                 </span>
@@ -169,9 +181,12 @@ export default function HomePage() {
           <p className="t-lede mt-4 max-w-2xl">
             A furnace check in the fall, an AC check in the spring, and priority when something breaks.
           </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 md:max-w-3xl">
+          <div className="mt-8">
+            <YearCurve />
+          </div>
+          <ul className="mt-4 grid gap-4 sm:grid-cols-2 md:max-w-3xl">
             {plans.map((p) => (
-              <li key={p.id} className={`card ${p.featured ? "border-2 border-pine" : ""}`}>
+              <li key={p.id} className={`card reveal lift ${p.featured ? "border-2 border-pine" : ""}`}>
                 <h3 className="t-h3">{p.name}</h3>
                 <p className="mt-1 text-2xl font-extrabold text-pine">{p.price}</p>
               </li>
@@ -190,7 +205,7 @@ export default function HomePage() {
           <p className="mt-3 font-bold text-slate">{site.reviewsLabel}</p>
           <ul className="mt-8 grid gap-4 md:grid-cols-3">
             {reviews.map((r) => (
-              <li key={r.by} className="card">
+              <li key={r.by} className="card reveal lift">
                 <figure className="flex h-full flex-col">
                   <blockquote className="flex-1">&ldquo;{r.quote}&rdquo;</blockquote>
                   <figcaption className="mt-5 font-bold text-pine">{r.by}</figcaption>

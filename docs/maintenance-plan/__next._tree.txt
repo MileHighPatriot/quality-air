@@ -1,4 +1,4 @@
-:HL["/quality-air/_next/static/chunks/3n7uv61696335.css","style"]
+:HL["/quality-air/_next/static/chunks/2pozdsi5dv3n7.css","style"]
 :HL["/quality-air/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/quality-air/_next/static/media/f25354f9e0fe5fea-s.p.3941-h4aze69t.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"maintenance-plan","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"btZTjQ81x-tvVQtdWY6Nv"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4112,"slots":{"children":{"name":"maintenance-plan","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}},"staleTime":300,"buildId":"Iv4EHejrcMX9q6baTVK41"}
